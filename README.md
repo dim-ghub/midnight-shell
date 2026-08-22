@@ -1,5 +1,6 @@
 <h1 align=center>MiDnight Shell</h1>
 
+
 <!-- test pkgit -->
 
 <div align=center>
@@ -56,7 +57,7 @@ Dependencies:
 -   `gcc-libs`
 -   [`material-symbols`](https://fonts.google.com/icons)
 -   [`caskaydia-cove-nerd`](https://www.nerdfonts.com/font-downloads)
--   [`swappy`](https://github.com/jtheoof/swappy)
+-   [`tensaku`](https://github.com/jondkinney/tensaku)
 -   [`libqalculate`](https://github.com/Qalculate/libqalculate)
 -   [`bash`](https://www.gnu.org/software/bash)
 -   `qt6-base`

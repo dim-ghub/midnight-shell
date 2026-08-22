@@ -9,7 +9,7 @@
   brightnessctl,
   networkmanager,
   lm_sensors,
-  swappy,
+  tensaku,
   wl-clipboard,
   libqalculate,
   bash,
@@ -45,7 +45,7 @@
       brightnessctl
       networkmanager
       lm_sensors
-      swappy
+      tensaku
       wl-clipboard
       libqalculate
       bash

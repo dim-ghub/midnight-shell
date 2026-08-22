@@ -80,9 +80,9 @@ MouseArea {
             if (isSearch) {
                 Quickshell.execDetached(["touch", "/tmp/caelestia-search.done"]);
             } else if (root.loader.clipboardOnly) {
-                Quickshell.execDetached(["caelestia", "screenshot", "--copy", "--file", path]);
+                Quickshell.execDetached(["tensaku", "-f", path, "--actions-on-enter", "save-to-clipboard", "--actions-on-escape", "exit", "--early-exit"]);
             } else {
-                Quickshell.execDetached(["caelestia", "screenshot", "--file", path]);
+                Quickshell.execDetached(["tensaku", "-f", path]);
             }
             Audio.playCameraClick();
             closeAnim.start();
