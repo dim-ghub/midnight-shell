@@ -17,7 +17,7 @@ Singleton {
 
     // Apps that expose in-app volume control over MPRIS. Sources not in this list
     // fall back to per-stream PipeWire volume control. Add new entries here.
-    readonly property list<string> appVolumePlayers: [ "Spotify" ]
+    readonly property list<string> appVolumePlayers: [ "Spotify", "Fastpotify" ]
 
     // Dedup key for progressive metadata (e.g. mpv-mpris/yt-dlp player fills title then artist later).
     property string lastNowPlayingKey: ""
