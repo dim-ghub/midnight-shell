@@ -14,7 +14,9 @@
 > [!NOTE]
 > This is a fork of the official [caelestia-shell](https://github.com/caelestia-dots/shell) with additional features. All new features are listed below.
 
-https://github.com/user-attachments/assets/0840f496-575c-4ca6-83a8-87bb01a85c5f
+
+https://github.com/user-attachments/assets/774a8872-4d95-45b9-a4b6-409d8394dadc
+
 
 ## Fork Features
 
@@ -29,6 +31,9 @@ This fork adds the following features on top of the official shell:
 - **Desktop**: Floating lyrics, Shimeji pets, dynamic wallpaper recoloring, and Bezel Mode.
 - **Lock Screen**: Configurable auto-lock on startup (`lockOnStartup`), redesigned profile and clock layout, and improved forecast UI.
 - **Hyprland**: Full support for the new Lua-based window focus and dispatching commands (`hl.dsp`).
+- **QuickShare**: Supports the android feature, allowing file transfers between your devices (w/ avahi daemon)
+- **Polkit**: Supplies its own built-in polkit daemon, with animations.
+  
 
 ## Installation
 
@@ -36,9 +41,9 @@ This fork adds the following features on top of the official shell:
 > This repository is a **FORK**, and can be out of date or have missing features from the [main repo](https://github.com/caelestia-dots/caelestia).
 > This fork is available at [dim-ghub/midnight-shell](https://github.com/dim-ghub/midnight-shell).
 
-### Arch Linux / Manual (this fork)
+### Arch Linux (this fork)
 
-Dependencies:
+<details><summary id="dependencies">Dependencies</summary>
 
 -   [`midnight-cli` (this fork is recommended and required for some features to work)](https://github.com/dim-ghub/midnight-cli)
 -   [`quickshell-git`](https://quickshell.outfoxxed.me) - this has to be the git version, not the latest tagged version
@@ -58,19 +63,22 @@ Dependencies:
 -   [`caskaydia-cove-nerd`](https://www.nerdfonts.com/font-downloads)
 -   [`swappy`](https://github.com/jtheoof/swappy)
 -   [`libqalculate`](https://github.com/Qalculate/libqalculate)
+-   [`protobuf`](https://protobuf.dev/)
 -   [`bash`](https://www.gnu.org/software/bash)
 -   `qt6-base`
 -   `qt6-declarative`
+  
 Build dependencies:
 
 -   [`cmake`](https://cmake.org)
 -   [`ninja`](https://github.com/ninja-build/ninja)
+</details>
 
-To install the shell, you can either use [pkgit](https://git.symlinx.net/pkgit) or the [AUR (In Testing)](https://aur.archlinux.org/packages/midnight-shell-git)
+**To install the shell, you can either use [pkgit](https://git.symlinx.net/pkgit) or the [AUR package](https://aur.archlinux.org/packages/midnight-shell-git)**
 
 Using `pkgit`:
 
-Install `[pkgit](https://git.symlinx.net/pkgit)` (also available on the AUR as `pkgit-git`).
+Install [`pkgit`](https://git.symlinx.net/pkgit) (also available on the AUR as [`pkgit-git`](https://aur.archlinux.org/packages/pkgit-git)).
 
 Then you can simply install the shell directly from GitHub without cloning it:
 
@@ -78,15 +86,15 @@ Then you can simply install the shell directly from GitHub without cloning it:
 pkgit -i https://github.com/dim-ghub/midnight-shell
 ```
 
+
 Using `AUR`
-if `paru`:
 ```sh
 paru -S midnight-shell-git
+# or yay -S midnight-shell-git
 ```
-if `yay`:
-```
-yay -S midnight-shell-git
-```
+
+> [!NOTE]
+> The recommended way to fully install MiDnight Shell is using [MiDnight CLI](https://github.com/dim-ghub/midnight-cli)'s command "`caelestia install`".
 
 #### Manual installation
 
