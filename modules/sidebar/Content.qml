@@ -20,9 +20,13 @@ Item {
 
     property string activeTab: "notifications"
 
+    readonly property bool aiAvailable: GlobalConfig.ai.enableOllama || GlobalConfig.ai.enableOpenRouter === true || GlobalConfig.ai.enableOpenClaw === true
+
     Connections {
         target: GlobalConfig.ai
         function onEnableOllamaChanged() { checkTabs(); }
+        function onEnableOpenRouterChanged() { checkTabs(); }
+        function onEnableOpenClawChanged() { checkTabs(); }
     }
 
     Connections {
@@ -41,7 +45,7 @@ Item {
     }
 
     function checkTabs() {
-        if (!GlobalConfig.ai.enableOllama) {
+        if (!root.aiAvailable) {
             if (root.activeTab === "ai") {
                 root.activeTab = "notifications";
             }
@@ -94,7 +98,7 @@ Item {
                                 var tabs = [
                                     { id: "notifications", label: qsTr("Notifications"), icon: "notifications" }
                                 ];
-                                if (GlobalConfig.ai.enableOllama) {
+                                if (root.aiAvailable) {
                                     tabs.push({ id: "ai", label: qsTr("AI Assistant"), icon: "smart_toy" });
                                 }
                                 if (GlobalConfig.sidebar.showNews !== false) {
