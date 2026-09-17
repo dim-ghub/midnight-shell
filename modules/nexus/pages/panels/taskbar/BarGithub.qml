@@ -61,6 +61,19 @@ PageBase {
             }
         }
 
+        ToggleRow {
+            Layout.fillWidth: true
+            text: qsTr("Recolour icons")
+            subtext: qsTr("Use the system theme colour for the contribution squares")
+            configNode: root.targetConfig.bar.github
+            propertyName: "recolourIcons"
+            checked: root.targetConfig.bar.github.recolourIcons
+            onToggled: {
+                root.targetConfig.bar.github.recolourIcons = checked;
+                root.targetConfig.save();
+            }
+        }
+
         Item {
             Layout.fillWidth: true
             Layout.preferredHeight: contentRow.implicitHeight + Tokens.padding.medium * 2

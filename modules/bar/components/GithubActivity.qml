@@ -47,6 +47,16 @@ StyledRect {
         }
     ]
 
+    function cellColour(item: var): color {
+        const level = item?.level ?? 0;
+        if (Config.bar.github.recolourIcons ?? false) {
+            if (level === 0)
+                return Colours.layer(Colours.palette.m3outlineVariant, 2);
+            return Qt.alpha(Colours.palette.m3secondary, [0.0, 0.4, 0.55, 0.75, 1.0][level] ?? 1.0);
+        }
+        const palette = ["#161b22", "#0e4429", "#006d32", "#26a641", "#39d353"];
+        return palette[level] ?? "#2f2f2f";
+    }
     function redact(value: string): string {
         return (value || "").replace(/bearer\s+[A-Za-z0-9_\-.]+/gi, "bearer [redacted]");
     }
@@ -86,7 +96,7 @@ StyledRect {
                 width: root.cellSize
                 height: root.cellSize
                 shape: MaterialShape.Square
-                color: modelData.color || "#2f2f2f"
+                color: modelData.color ?? root.cellColour(modelData)
             }
         }
 
@@ -225,7 +235,6 @@ PY
                         count: 0
                     });
 
-                const palette = ["#161b22", "#0e4429", "#006d32", "#26a641", "#39d353"];
                 let max = 1;
                 for (let i = 0; i < window.length; i++) {
                     if (window[i].count > max)
@@ -234,11 +243,11 @@ PY
 
                 for (let i = 0; i < window.length; i++) {
                     const count = window[i].count;
-                    const idx = count === 0 ? 0 : Math.min(4, 1 + Math.floor((count * 4) / max));
+                    const level = count === 0 ? 0 : Math.min(4, 1 + Math.floor((count * 4) / max));
                     window[i] = {
                         date: window[i].date,
                         count,
-                        color: palette[idx]
+                        level
                     };
                 }
 
