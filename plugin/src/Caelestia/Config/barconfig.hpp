@@ -116,6 +116,7 @@ class BarGithub : public settings::ObjectNode {
     CONFIG_NODE(BarGithub, settings::ObjectNode)
 
     CONFIG_PROPERTY(bool, background, false)
+    CONFIG_PROPERTY(bool, recolourIcons, false)
 };
 
 class BarSpotify : public settings::ObjectNode {
