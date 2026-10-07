@@ -335,7 +335,7 @@ Item {
     FileView {
         id: chatStore
         path: root.storePath
-        preload: false
+        preload: true
         printErrors: false
 
         onLoaded: {
