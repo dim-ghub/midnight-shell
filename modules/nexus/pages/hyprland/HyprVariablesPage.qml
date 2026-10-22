@@ -4,6 +4,7 @@ import Quickshell
 import Quickshell.Widgets
 import Caelestia
 import Caelestia.Config
+import Caelestia.I18n
 import qs.components
 import qs.components.controls
 import qs.components.containers
@@ -539,7 +540,7 @@ PageBase {
         
         AppRow { first: true; icon: "terminal"; label: "Terminal"; varKey: "terminal" }
         AppRow { icon: "public"; label: "Browser"; varKey: "browser" }
-        AppRow { icon: "code"; label: "Editor"; varKey: "editor" }
+        AppRow { icon: "code"; label: Tr.tr("Code editor"); varKey: "editor" }
         AppRow { icon: "folder"; label: "File Explorer"; varKey: "fileExplorer" }
         AppRow { last: true; icon: "volume_up"; label: "Audio Settings"; varKey: "audioSettings" }
         

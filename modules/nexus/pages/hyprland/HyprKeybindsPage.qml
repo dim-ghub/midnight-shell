@@ -5,6 +5,7 @@ import Quickshell.Widgets
 import Caelestia
 import Caelestia.Blobs
 import Caelestia.Config
+import Caelestia.I18n
 import qs.components
 import qs.components.controls
 import qs.components.containers
@@ -529,7 +530,7 @@ PageBase {
         
         KeybindRow { first: true; label: "Terminal"; varKey: "kbTerminal" }
         KeybindRow { label: "Browser"; varKey: "kbBrowser" }
-        KeybindRow { label: "Editor"; varKey: "kbEditor" }
+        KeybindRow { label: Tr.tr("Code editor"); varKey: "kbEditor" }
         KeybindRow { last: true; label: "File Explorer"; varKey: "kbFileExplorer" }
         
         SectionHeader {
