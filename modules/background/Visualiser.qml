@@ -5,8 +5,8 @@ import QtQuick.Effects
 import Quickshell
 import Caelestia.Components
 import Caelestia.Config
-import Caelestia.State
 import Caelestia.Services
+import Caelestia.State
 import qs.components
 import qs.services
 
@@ -47,7 +47,7 @@ Item {
         id: wrapper
 
         anchors.fill: parent
-        layer.enabled: true
+        layer.enabled: root.opacity > 0 && Config.background.visualiser.blur
 
         Loader {
             asynchronous: true
@@ -151,11 +151,16 @@ Item {
                     fragmentShader: "qrc:/shaders/visualiser.frag.qsb"
                 }
 
-                FrameAnimation {
+                // Keep decorative animation at 30 fps even on high-refresh displays.
+                Timer {
+                    property ElapsedTimer frameClock: ElapsedTimer {}
+                    interval: 33
+                    repeat: true
                     running: root.opacity > 0 && !bars.settled
+                    onRunningChanged: frameClock.restart()
                     onTriggered: {
-                        bars.advance(frameTime);
-                        if (!root.rendererGpu) {
+                        bars.advance(Math.min(0.1, frameClock.restart()));
+                        if (root.rendererGpu) {
                             dataCanvas.requestPaint();
                         }
                     }

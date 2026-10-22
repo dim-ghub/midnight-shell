@@ -30,7 +30,7 @@ Item {
     ]
 
     ServiceRef {
-        service: Audio.cava
+        service: root.visible ? Audio.cava : null
     }
 
     MaterialShape {

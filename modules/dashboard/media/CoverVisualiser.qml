@@ -20,7 +20,7 @@ Item {
     readonly property real maxMagnitude: (implicitWidth - cover.implicitWidth) / 2 - spacing
 
     ServiceRef {
-        service: Audio.cava
+        service: root.visible ? Audio.cava : null
     }
 
     Shape {
