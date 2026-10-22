@@ -8,10 +8,43 @@ import Quickshell.Services.Pipewire
 import Caelestia
 import Caelestia.Config
 import Caelestia.I18n
+import qs.utils
 import Caelestia.Services
 
 Singleton {
     id: root
+
+    property bool showHiddenDevices: false
+    property alias hiddenDevices: devicePreferences.hiddenDevices
+
+    function deviceKey(node): string {
+        return node?.name ? (node.isSink ? "output:" : "input:") + node.name : "";
+    }
+
+    function isDeviceHidden(node): bool {
+        return hiddenDevices.indexOf(deviceKey(node)) !== -1;
+    }
+
+    function toggleDeviceHidden(node): void {
+        const key = deviceKey(node);
+        if (!key) return;
+        hiddenDevices = isDeviceHidden(node)
+            ? hiddenDevices.filter(value => value !== key)
+            : [...hiddenDevices, key];
+        deviceStore.writeAdapter();
+    }
+
+    FileView {
+        id: deviceStore
+        path: `${Paths.state}/audio-devices.json`
+        printErrors: false
+        watchChanges: true
+        onFileChanged: reload()
+        JsonAdapter {
+            id: devicePreferences
+            property list<string> hiddenDevices: []
+        }
+    }
 
     property string previousSinkName: ""
     property string previousSourceName: ""
@@ -71,12 +104,10 @@ Singleton {
     }
 
     function cycleNextAudioOutput(): void {
-        if (sinks.length === 0)
-            return;
-
-        const currentIndex = sinks.findIndex(s => s === sink);
-        const nextIndex = (currentIndex + 1) % sinks.length;
-        setAudioSink(sinks[nextIndex]);
+        const available = sinks.filter(node => !isDeviceHidden(node));
+        if (available.length === 0) return;
+        const currentIndex = available.findIndex(s => s === sink);
+        setAudioSink(available[(currentIndex + 1) % available.length]);
     }
 
     function setStreamVolume(stream: PwNode, newVolume: real): void {

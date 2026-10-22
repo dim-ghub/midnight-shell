@@ -34,6 +34,14 @@ PageBase {
         width: root.cappedWidth
         spacing: Tokens.spacing.extraSmall / 2
 
+        ToggleRow {
+            first: true
+            last: true
+            text: Tr.tr("Show hidden devices")
+            checked: Audio.showHiddenDevices
+            onToggled: Audio.showHiddenDevices = checked
+        }
+
         // Output
         SliderRow {
             first: true
