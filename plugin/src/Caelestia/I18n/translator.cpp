@@ -308,6 +308,10 @@ QString Translator::langForLocale() const {
 }
 
 QString Translator::resolveLanguage(const QString& language) const {
+    // English is the source language and does not require a catalog.
+    if (language == u"en"_s)
+        return {};
+
     if (language.isEmpty())
         return langForLocale();
 

@@ -78,26 +78,36 @@ PageBase {
             last: true
             label: Tr.tr("UI language")
             subtext: Tr.tr("The language used in the shell UI")
-            active: menuItems.find(i => i.modelData === Tr.language) ?? autoLang
+            active: menuItems.find(i => i.value === GlobalConfig.general.language) ?? autoLang
             onSelected: item => {
-                Tr.language = item.modelData ?? ""; // qmllint disable missing-property
+                GlobalConfig.general.language = item.value;
+                GlobalConfig.save();
             }
 
-            menuItems: [autoLang, ...langItems.instances]
+            menuItems: [autoLang, englishLang, ...langItems.instances]
 
             MenuItem {
                 id: autoLang
 
                 text: Tr.tr("Auto")
+                value: ""
+            }
+
+            MenuItem {
+                id: englishLang
+
+                text: "English"
+                value: "en"
             }
 
             Variants {
                 id: langItems
 
-                model: Tr.supportedLanguages
+                model: Tr.supportedLanguages.filter(language => language !== "en")
 
                 MenuItem {
                     required property string modelData
+                    value: modelData
 
                     text: {
                         const locale = Qt.locale(modelData);
