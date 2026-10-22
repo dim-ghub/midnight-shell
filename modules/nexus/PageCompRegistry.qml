@@ -147,7 +147,11 @@ QtObject {
 
         // System
         Component {
-            PlaceholderComp {}
+            StackPage {
+                Component {
+                    UpdatesPage {}
+                }
+            }
         },
         Component {
             PlaceholderComp {}
